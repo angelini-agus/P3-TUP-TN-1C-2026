@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Badge, Button, Card } from "react-bootstrap";
 import classNames from "classnames";
+import { decidePlural } from "./BookItem.helpers";
 import styles from "./BookItem.module.css";
 
 const BookItem = ({
@@ -48,10 +49,10 @@ const BookItem = ({
         <Card.Title className={styles.title}>{bookTitle}</Card.Title>
         <Card.Subtitle className={styles.author}>{author}</Card.Subtitle>
         <div>
-          {rating} estrella{rating !== 1 ? "s" : ""}
+          {rating} estrella{decidePlural(rating)}
         </div>
         <p className={styles.pageCount}>
-          {pageCount} página{pageCount !== 1 ? "s" : ""}
+          {pageCount} página{decidePlural(pageCount)}
         </p>
         <Button onClick={handleChangeTitle} className={styles.button}>
           Actualizar título

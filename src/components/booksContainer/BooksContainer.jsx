@@ -16,7 +16,7 @@ const BooksContainer = ({ books }) => {
   });
 
   return (
-    <div className="d-flex justify-content-center flex-wrap">{booksMapped}</div>
+    <div className="d-flex justify-content-center flex-wrap mt-5">{booksMapped}</div>
   );
 };
 
