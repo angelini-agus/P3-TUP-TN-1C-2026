@@ -6,6 +6,7 @@ import Login from "./components/login/Login";
 
 const App = () => {
   const [books, setBooks] = useState(BOOKS);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleAddBook = (form) => {
     setBooks(prevBooks => [...prevBooks, {
@@ -14,13 +15,22 @@ const App = () => {
     }])
   }
 
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  }
+
   return (
     <>
       {/* <h1>¡Bienvenidos a book champions!</h1> */}
       <div className="d-flex flex-column align-items-center">
-        {/* <NewBook onAddBook={handleAddBook} />
-        <BooksContainer books={books} /> */}
-        <Login />
+        {isAuthenticated ? (
+          <>
+            <NewBook onAddBook={handleAddBook} />
+            <BooksContainer books={books} />
+          </>
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
       </div>
     </>
   );
