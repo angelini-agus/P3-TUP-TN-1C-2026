@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Badge, Button, Card } from "react-bootstrap";
 import classNames from "classnames";
-import { decidePlural } from "./BookItem.helpers";
+import { componentArray, decidePlural } from "./BookItem.helpers";
 import styles from "./BookItem.module.css";
+import { Star, StarFill } from "react-bootstrap-icons";
 
 const BookItem = ({
   title,
@@ -15,6 +16,10 @@ const BookItem = ({
   onSelectBook
 }) => {
   const [bookAvailability, setBookAvailability] = useState(available);
+
+  const bookStars = componentArray(rating, <StarFill />)
+
+  const bookStarsEmpty = componentArray(5 - rating, <Star />)
 
   const handleSelectBook = () => {
     onSelectBook(title);
@@ -54,7 +59,7 @@ const BookItem = ({
         <Card.Title className={styles.title}>{title}</Card.Title>
         <Card.Subtitle className={styles.author}>{author}</Card.Subtitle>
         <div>
-          {rating} estrella{decidePlural(rating)}
+          {bookStars}{bookStarsEmpty}
         </div>
         <p className={styles.pageCount}>
           {pageCount} página{decidePlural(pageCount)}
